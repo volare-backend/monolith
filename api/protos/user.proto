@@ -1,0 +1,60 @@
+syntax = "proto3";
+package service;
+option go_package = "./service/user";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+
+service UserService {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {
+    option (google.api.http) = {
+      get: "/user/get"
+    };
+  }
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {
+    option (google.api.http) = {
+      put: "/user/update"
+      body: "*"
+    };
+  }
+  rpc DeleteUser (DeleteUserRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/user/delete"
+    };
+  }
+}
+
+message User {
+  string uid = 1;
+  string name = 2;
+  string image_url = 3;
+  Profile profile = 4;
+}
+
+message Profile {
+  string id = 1;
+  uint32 work_experience = 2;
+  string university = 3;
+  string department = 4;
+  string graduation_year = 5;
+}
+
+message GetUserRequest {
+  string uid = 1;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message UpdateUserRequest {
+   User user = 1;
+}
+
+message UpdateUserResponse {
+  User user = 1;
+}
+
+message DeleteUserRequest {
+  string uid = 1;
+}

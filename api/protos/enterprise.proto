@@ -1,0 +1,79 @@
+syntax = "proto3";
+package service;
+option go_package = "./service/enterprise";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service EnterpriseService {
+  rpc CreateEnterprise (CreateEnterpriseRequest) returns (CreateEnterpriseResponse) {
+    option (google.api.http) = {
+      post: "/enterprise/create"
+      body: "*"
+    };
+  }
+
+  rpc GetEnterprise (GetEnterpriseRequest) returns (GetEnterpriseResponse) {
+    option (google.api.http) = {
+      get: "/enterprise/get"
+    };
+  }
+
+  rpc UpdateEnterprise (UpdateEnterpriseRequest) returns (UpdateEnterpriseResponse) {
+    option (google.api.http) = {
+      put: "/enterprise/update"
+      body: "*"
+    };
+  }
+
+  rpc DeleteEnterprise (DeleteEnterpriseRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/enterprise/delete"
+    };
+  }
+
+  rpc ListAllEnterprises (ListAllEnterprisesRequest) returns (ListAllEnterprisesResponse) {
+    option (google.api.http) = {
+      get: "/enterprise/list"
+    };
+  }
+}
+
+message Enterprise {
+  string id = 1;
+  string name = 2;
+  string image_url = 3;
+  string description = 4;
+  string homepage = 5;
+}
+
+message CreateEnterpriseRequest {
+  Enterprise enterprise = 1;
+}
+
+message CreateEnterpriseResponse {}
+
+message GetEnterpriseRequest {
+  string id = 1;
+}
+
+message GetEnterpriseResponse {
+  Enterprise enterprise = 1;
+}
+
+message UpdateEnterpriseRequest {
+  Enterprise enterprise = 1;
+}
+
+message UpdateEnterpriseResponse {}
+
+message DeleteEnterpriseRequest {
+  string id = 1;
+}
+
+message DeleteEnterpriseResponse {}
+
+message ListAllEnterprisesRequest {}
+
+message ListAllEnterprisesResponse {
+  repeated Enterprise enterprise = 1;
+}

@@ -1,0 +1,198 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "enterprise.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/enterprise/create": {
+      "post": {
+        "operationId": "CreateEnterprise",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serviceCreateEnterpriseResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/serviceCreateEnterpriseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "EnterpriseService"
+        ]
+      }
+    },
+    "/enterprise/delete": {
+      "delete": {
+        "operationId": "DeleteEnterprise",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EnterpriseService"
+        ]
+      }
+    },
+    "/enterprise/get": {
+      "get": {
+        "operationId": "GetEnterprise",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serviceGetEnterpriseResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EnterpriseService"
+        ]
+      }
+    },
+    "/enterprise/list": {
+      "get": {
+        "operationId": "ListAllEnterprises",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serviceListAllEnterprisesResponse"
+            }
+          }
+        },
+        "tags": [
+          "EnterpriseService"
+        ]
+      }
+    },
+    "/enterprise/update": {
+      "put": {
+        "operationId": "UpdateEnterprise",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serviceUpdateEnterpriseResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/serviceUpdateEnterpriseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "EnterpriseService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "serviceCreateEnterpriseRequest": {
+      "type": "object",
+      "properties": {
+        "enterprise": {
+          "$ref": "#/definitions/serviceEnterprise"
+        }
+      }
+    },
+    "serviceCreateEnterpriseResponse": {
+      "type": "object"
+    },
+    "serviceEnterprise": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "homepage": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceGetEnterpriseResponse": {
+      "type": "object",
+      "properties": {
+        "enterprise": {
+          "$ref": "#/definitions/serviceEnterprise"
+        }
+      }
+    },
+    "serviceListAllEnterprisesResponse": {
+      "type": "object",
+      "properties": {
+        "enterprise": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/serviceEnterprise"
+          }
+        }
+      }
+    },
+    "serviceUpdateEnterpriseRequest": {
+      "type": "object",
+      "properties": {
+        "enterprise": {
+          "$ref": "#/definitions/serviceEnterprise"
+        }
+      }
+    },
+    "serviceUpdateEnterpriseResponse": {
+      "type": "object"
+    }
+  }
+}

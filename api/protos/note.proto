@@ -1,0 +1,118 @@
+syntax = "proto3";
+package service;
+option go_package = "./service/note";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "user.proto";
+import "enterprise.proto";
+
+service NoteService {
+  rpc CreateNote (CreateNoteRequest) returns (CreateNoteResponse) {
+    option (google.api.http) = {
+      post: "/note/create"
+      body: "*"
+    };
+  }
+
+  rpc GetNote (GetNoteRequest) returns (GetNoteResponse) {
+    option (google.api.http) = {
+      get: "/note/get"
+    };
+  }
+
+  rpc UpdateNote (UpdateNoteRequest) returns (UpdateNoteResponse) {
+    option (google.api.http) = {
+      put: "/note/update"
+      body: "*"
+    };
+  }
+
+  rpc DeleteNote (DeleteNoteRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/note/delete"
+    };
+  }
+
+  rpc ListNotes (ListNotesRequest) returns (ListNotesResponse) {
+    option (google.api.http) = {
+      get: "/notes"
+    };
+  }
+
+  rpc SearchNotes (SearchNotesRequest) returns (SearchNotesResponse) {
+    option (google.api.http) = {
+      get: "/notes/search"
+    };
+  }
+}
+
+message Note {
+  string id = 1;
+  User user = 2;
+  Enterprise enterprise = 3;
+  string title = 4;
+  string intern_name = 5;
+  string position = 6;
+  bool is_online = 7;
+  uint32 join_year = 8;
+  uint32 wage = 9;
+  string job_start_date = 10;
+  string job_end_date = 11;
+  bool is_event = 12;
+  uint32 mentor_support_score = 13;
+  uint32 fun_score = 14;
+  uint32 content_score = 15;
+  string text = 16;
+  repeated Tech tech = 17;
+  google.protobuf.Timestamp      updated_at= 18;
+  google.protobuf.Timestamp      created_at= 19;
+}
+
+message Tech {
+  string  id = 1;
+  string  name = 2;
+  uint32  type = 3;
+}
+
+message CreateNoteRequest {
+  Note note = 1;
+}
+
+message CreateNoteResponse {
+  Note note = 1;
+}
+
+message GetNoteRequest {
+  string id = 1;
+}
+
+message GetNoteResponse {
+  Note note = 1;
+}
+
+message UpdateNoteRequest {
+  Note note = 1;
+}
+
+message UpdateNoteResponse {}
+
+message DeleteNoteRequest {
+  string id = 1;
+}
+
+message DeleteNoteResponse {}
+
+message ListNotesRequest {}
+
+message ListNotesResponse {
+  repeated Note note = 1;
+}
+
+message SearchNotesRequest {
+  Note note = 1;
+}
+
+message SearchNotesResponse {
+  repeated Note note = 1;
+}

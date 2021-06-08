@@ -1,0 +1,543 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "note.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/note/create": {
+      "post": {
+        "operationId": "CreateNote",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serviceCreateNoteResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/serviceCreateNoteRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NoteService"
+        ]
+      }
+    },
+    "/note/delete": {
+      "delete": {
+        "operationId": "DeleteNote",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NoteService"
+        ]
+      }
+    },
+    "/note/get": {
+      "get": {
+        "operationId": "GetNote",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serviceGetNoteResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NoteService"
+        ]
+      }
+    },
+    "/note/update": {
+      "put": {
+        "operationId": "UpdateNote",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serviceUpdateNoteResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/serviceUpdateNoteRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NoteService"
+        ]
+      }
+    },
+    "/notes": {
+      "get": {
+        "operationId": "ListNotes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serviceListNotesResponse"
+            }
+          }
+        },
+        "tags": [
+          "NoteService"
+        ]
+      }
+    },
+    "/notes/search": {
+      "get": {
+        "operationId": "SearchNotes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/serviceSearchNotesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "note.id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.user.uid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.user.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.user.image_url",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.user.profile.id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.user.profile.work_experience",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "note.user.profile.university",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.user.profile.department",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.user.profile.graduation_year",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.enterprise.id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.enterprise.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.enterprise.image_url",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.enterprise.description",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.enterprise.homepage",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.title",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.intern_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.position",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.is_online",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          },
+          {
+            "name": "note.join_year",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "note.wage",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "note.job_start_date",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.job_end_date",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.is_event",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "format": "boolean"
+          },
+          {
+            "name": "note.mentor_support_score",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "note.fun_score",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "note.content_score",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "note.text",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "note.updated_at",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "note.created_at",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "NoteService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "serviceCreateNoteRequest": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "$ref": "#/definitions/serviceNote"
+        }
+      }
+    },
+    "serviceCreateNoteResponse": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "$ref": "#/definitions/serviceNote"
+        }
+      }
+    },
+    "serviceEnterprise": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "homepage": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceGetNoteResponse": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "$ref": "#/definitions/serviceNote"
+        }
+      }
+    },
+    "serviceListNotesResponse": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/serviceNote"
+          }
+        }
+      }
+    },
+    "serviceNote": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/serviceUser"
+        },
+        "enterprise": {
+          "$ref": "#/definitions/serviceEnterprise"
+        },
+        "title": {
+          "type": "string"
+        },
+        "intern_name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "is_online": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "join_year": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "wage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "job_start_date": {
+          "type": "string"
+        },
+        "job_end_date": {
+          "type": "string"
+        },
+        "is_event": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "mentor_support_score": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "fun_score": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "content_score": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "text": {
+          "type": "string"
+        },
+        "tech": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/serviceTech"
+          }
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "serviceProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "work_experience": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "university": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "graduation_year": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceSearchNotesResponse": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/serviceNote"
+          }
+        }
+      }
+    },
+    "serviceTech": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "serviceUpdateNoteRequest": {
+      "type": "object",
+      "properties": {
+        "note": {
+          "$ref": "#/definitions/serviceNote"
+        }
+      }
+    },
+    "serviceUpdateNoteResponse": {
+      "type": "object"
+    },
+    "serviceUser": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "profile": {
+          "$ref": "#/definitions/serviceProfile"
+        }
+      }
+    }
+  }
+}
