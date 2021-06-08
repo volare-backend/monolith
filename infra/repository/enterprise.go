@@ -64,60 +64,48 @@ func (r EnterpriseRepository) GetByID(id int64) (*entity.Enterprise, error) {
 		description string
 		homepage    string
 	)
-	rows, err := prep.QueryRow(1).Scan(&id, &id, &name, &imageUrl, &description, &homepage)
+	err = stmt.QueryRow(1).Scan(&id, &id, &name, &imageUrl, &description, &homepage)
 	if err != nil {
+		if err == sql.ErrNoRows {
+			return &entity.Enterprise{}, nil
+		}
 		return nil, err
 	}
-	defer rows.Close()
-	entity := &entity.Enterprise{
+	e := &entity.Enterprise{
 		Description: description,
 		Homepage:    homepage,
 		Id:          id,
 		ImageUrl:    imageUrl,
 		Name:        name,
 	}
-	return entity, err
+	return e, err
 }
-func (r EnterpriseRepository) Create(enterprise *entity.Enterprise) (*entity.Enterprise, error) {
-	stmt, err := r.db.Prepare("INSERT INTO `enterprise` (`id`, `name`, `image_url`, `description`, `homepage`) VALUES (?, ?, ?, ?, ?);")
+func (r EnterpriseRepository) Create(e *entity.Enterprise) (*entity.Enterprise, error) {
+	stmt, err := r.DB.Prepare("INSERT INTO `e` (`id`, `name`, `image_url`, `description`, `homepage`) VALUES (?, ?, ?, ?, ?);")
 	if err != nil {
 		return nil, err
 	}
 	defer stmt.Close()
-	_, err = stmt.Exec(enterprise.Id, enterprise.Name, enterprise.ImageUrl, enterprise.Description, enterprise.Homepage)
+	_, err = stmt.Exec(e.Id, e.Name, e.ImageUrl, e.Description, e.Homepage)
 	if err != nil {
 		return nil, err
 	}
-	entity := &entity.Enterprise{
-		Description: description,
-		Homepage:    homepage,
-		Id:          id,
-		ImageUrl:    imageUrl,
-		Name:        name,
-	}
-	return entity, err
+	return e, err
 }
-func (r EnterpriseRepository) Update(id string, enterprise *entity.Enterprise) (*entity.Enterprise, error) {
-	stmt, err := r.db.Prepare("UPDATE `enterprise` SET  `name` = ? `image_url` = ? `description` = ? `homepage` = ? WHERE `id` = ?;")
+func (r EnterpriseRepository) Update(id string, e *entity.Enterprise) (*entity.Enterprise, error) {
+	stmt, err := r.DB.Prepare("UPDATE `e` SET  `name` = ? `image_url` = ? `description` = ? `homepage` = ? WHERE `id` = ?;")
 	if err != nil {
 		return nil, err
 	}
 	defer stmt.Close()
-	_, err = stmt.Exec(id, enterprise.Id, enterprise.Name, enterprise.ImageUrl, enterprise.Description, enterprise.Homepage)
+	_, err = stmt.Exec(id, e.Id, e.Name, e.ImageUrl, e.Description, e.Homepage)
 	if err != nil {
 		return nil, err
 	}
-	entity := &entity.Enterprise{
-		Description: description,
-		Homepage:    homepage,
-		Id:          id,
-		ImageUrl:    imageUrl,
-		Name:        name,
-	}
-	return entity, err
+	return e, err
 }
 func (r EnterpriseRepository) Delete(id int64) error {
-	stmt, err := r.db.Prepare("DELETE FROM `enterprise` WHERE `id` = ?;")
+	stmt, err := r.DB.Prepare("DELETE FROM `enterprise` WHERE `id` = ?;")
 	if err != nil {
 		return err
 	}
