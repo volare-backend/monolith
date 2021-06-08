@@ -2,10 +2,12 @@
 
 package repository
 
-type IEnterprise interface {
-	GetList() ([]Enterprise, error)
-	GetByID(id int64) (*Enterprise, error)
-	Create(id string, name string, imageUrl string, description string, homepage string) (*Enterprise, error)
-	Update(id string, name string, imageUrl string, description string, homepage string, id int64) (*Enterprise, error)
-	Delete() error
+import "backend/domain/entity"
+
+type IEnterpriseRepository interface {
+	GetList() ([]*entity.Enterprise, error)
+	GetByID(id int64) (*entity.Enterprise, error)
+	Create(enterprise *entity.Enterprise) (*entity.Enterprise, error)
+	Update(id string, enterprise *entity.Enterprise) (*entity.Enterprise, error)
+	Delete(id int64) error
 }

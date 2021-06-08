@@ -2,67 +2,72 @@
 
 package usecase
 
-type Enterprise struct {
-	EnterpriseRepo repository.IEnterprise
+import (
+	"backend/domain/entity"
+	"backend/domain/repository"
+)
+
+type EnterpriseUsecase struct {
+	EnterpriseRepo repository.IEnterpriseRepository
 }
 
-func NewEnterpriseUsecase(repo repository.IEnterprise) repository.IEnterprise {
-	return &Enterprise{EnterpriseRepo: repo}
+func NewEnterpriseUsecase(repo repository.IEnterpriseRepository) *EnterpriseUsecase {
+	return &EnterpriseUsecase{EnterpriseRepo: repo}
 }
-func (u Enterprise) GetList() ([]*entity.Enterprise, error) {
-	usecases, err := u.EnterpriseRepo.GetAll()
+func (u EnterpriseUsecase) GetList() ([]*entity.Enterprise, error) {
+	entities, err := u.EnterpriseRepo.GetList()
 	if err != nil {
 		return nil, err
 	}
-	return usecases, err
+	return entities, err
 }
-func (u Enterprise) GetByID(id int64) (*entity.Enterprise, error) {
-	usecase, err := u.EnterpriseRepo.GetByID(id)
+func (u EnterpriseUsecase) GetByID(id int64) (*entity.Enterprise, error) {
+	e, err := u.EnterpriseRepo.GetByID(id)
 	if err != nil {
 		return nil, err
 	}
-	return usecase, err
+	return e, err
 }
-func (u Enterprise) Create(id string, name string, imageUrl string, description string, homepage string) (*entity.Enterprise, error) {
-	entity := &entity.Enterprise{
+func (u EnterpriseUsecase) Create(id string, name string, imageUrl string, description string, homepage string) (*entity.Enterprise, error) {
+	e := &entity.Enterprise{
 		Description: description,
 		Homepage:    homepage,
 		Id:          id,
 		ImageUrl:    imageUrl,
 		Name:        name,
 	}
-	created, err := u.EnterpriseRepo.Create(entity)
+	created, err := u.EnterpriseRepo.Create(e)
 	if err != nil {
 		return nil, err
 	}
 	return created, err
 }
-func (u Enterprise) Update(id string, name string, imageUrl string, description string, homepage string, id int64) (*entity.Enterprise, error) {
-	entity, err := u.EnterpriseRepo.GetByID(id)
+func (u EnterpriseUsecase) Update(name string, imageUrl string, description string, homepage string, id int64) (*entity.Enterprise, error) {
+	e, err := u.EnterpriseRepo.GetByID(id)
 	if err != nil {
 		return nil, err
 	}
-	entity = &entity.Enterprise{
+	e = &entity.Enterprise{
 		Description: description,
 		Homepage:    homepage,
 		Id:          id,
 		ImageUrl:    imageUrl,
 		Name:        name,
 	}
-	updated, err := u.EnterpriseRepo.Update(entity, id)
+	updated, err := u.EnterpriseRepo.Update(id, e)
 	if err != nil {
 		return nil, err
 	}
 	return updated, err
 }
-func (u Enterprise) Delete(id int64) error {
-	entity, err := u.EnterpriseRepo.GetByID(id)
+func (u EnterpriseUsecase) Delete(id int64) error {
+	_, err := u.EnterpriseRepo.GetByID(id)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	err := u.EnterpriseRepo.Delete(entity, id)
+	err = u.EnterpriseRepo.Delete(id)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	return err
 }
