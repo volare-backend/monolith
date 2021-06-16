@@ -1,4 +1,4 @@
-ModuleName    = "github.com/repository/package"
+ModuleName    = "github.com/volare-backend/monolith"
 ServerDir     = "app/server"
 UsecaseDir    = "usecase"
 DomainRepoDir = "domain/repository"

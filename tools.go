@@ -15,6 +15,7 @@ import (
 	_ "github.com/izumin5210/grapi/cmd/grapi-gen-scaffold-service"
 	_ "github.com/izumin5210/grapi/cmd/grapi-gen-service"
 	_ "github.com/izumin5210/grapi/cmd/grapi-gen-type"
+	_ "go get github.com/riita10069/roche/cmd/roche"
 )
 
 // If you want to use tools, please run the following command:
@@ -29,3 +30,4 @@ import (
 //go:generate go build -v -o=./bin/grapi-gen-scaffold-service github.com/izumin5210/grapi/cmd/grapi-gen-scaffold-service
 //go:generate go build -v -o=./bin/grapi-gen-service github.com/izumin5210/grapi/cmd/grapi-gen-service
 //go:generate go build -v -o=./bin/grapi-gen-type github.com/izumin5210/grapi/cmd/grapi-gen-type
+//go:generate go build -v -o=./bin/roche github.com/riita10069/roche/cmd/roche
