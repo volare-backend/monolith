@@ -2,11 +2,11 @@
 
 package usecase
 
-type Enterprise struct {
-	EnterpriseRepo repository.IEnterpriseUsecase
+type EnterpriseUsecase struct {
+	EnterpriseRepo repository.IEnterpriseRepostiroy
 }
 
-func NewEnterpriseUsecase(repo repository.IEnterpriseRepository) EnterpriseUsecase {
+func NewEnterpriseUsecase(repo repository.IEnterpriseRepository) *EnterpriseUsecase {
 	return &EnterpriseUsecase{EnterpriseRepo: repo}
 }
 func (u EnterpriseUsecase) GetList() ([]*entity.Enterprise, error) {

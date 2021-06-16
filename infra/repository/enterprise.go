@@ -2,7 +2,7 @@
 
 package repository
 
-type Enterprise struct {
+type EnterpriseRepository struct {
 	DB *sql.DB
 }
 
@@ -21,7 +21,7 @@ func (r EnterpriseRepository) GetList() ([]*entity.Enterprise, error) {
 		var (
 			id          string
 			name        string
-			image_url   string
+			imageUrl    string
 			description string
 			homepage    string
 			id          int64
@@ -45,7 +45,7 @@ func (r EnterpriseRepository) GetList() ([]*entity.Enterprise, error) {
 	}
 	return entities, err
 }
-func (r EnterpriseRepository) Find(id int64) (*entity.Enterprise, error) {
+func (r EnterpriseRepository) GetByID(id int64) (*entity.Enterprise, error) {
 	stmt, err := r.DB.Prepare("SELECT `id`, `name`, `image_url`, `description`, `homepage`, `created_at`, `updated_at` FROM `enterprise` WHERE `id` = ?;")
 	if err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func (r EnterpriseRepository) Find(id int64) (*entity.Enterprise, error) {
 	var (
 		id          string
 		name        string
-		image_url   string
+		imageUrl    string
 		description string
 		homepage    string
 		id          int64
