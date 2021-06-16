@@ -42,7 +42,7 @@ func (u EnterpriseUsecase) Create(id string, name string, imageUrl string, descr
 	}
 	return created, err
 }
-func (u EnterpriseUsecase) Update(id string, name string, imageUrl string, description string, homepage string, id int64) (*entity.Enterprise, error) {
+func (u EnterpriseUsecase) Update(name string, imageUrl string, description string, homepage string, id int64) (*entity.Enterprise, error) {
 	e, err := u.EnterpriseRepo.GetByID(id)
 	if err != nil {
 		return nil, err
@@ -50,7 +50,6 @@ func (u EnterpriseUsecase) Update(id string, name string, imageUrl string, descr
 	e = &entity.Enterprise{
 		Description: description,
 		Homepage:    homepage,
-		Id:          id,
 		ImageUrl:    imageUrl,
 		Name:        name,
 	}
