@@ -2,8 +2,13 @@
 
 package usecase
 
+import (
+	"github.com/volare-backend/monolith/domain/entity"
+	"github.com/volare-backend/monolith/domain/repository"
+)
+
 type EnterpriseUsecase struct {
-	EnterpriseRepo repository.IEnterpriseRepostiroy
+	EnterpriseRepo repository.IEnterpriseRepository
 }
 
 func NewEnterpriseUsecase(repo repository.IEnterpriseRepository) *EnterpriseUsecase {
