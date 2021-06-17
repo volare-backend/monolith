@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package service;
+
+option go_package = "monolith/api;api_pb";
+
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service SampleService {
+  rpc ListSamples (ListSamplesRequest) returns (ListSamplesResponse) {
+    option (google.api.http) = {
+      get: "/samples"
+    };
+  }
+  rpc GetSample (GetSampleRequest) returns (Sample) {
+    option (google.api.http) = {
+      get: "/samples/{sample_id}"
+    };
+  }
+  rpc CreateSample (CreateSampleRequest) returns (Sample) {
+    option (google.api.http) = {
+      post: "/samples"
+      body: "sample"
+    };
+  }
+  rpc UpdateSample (UpdateSampleRequest) returns (Sample) {
+    option (google.api.http) = {
+      patch: "/samples/{sample_id}"
+      body: "sample"
+    };
+  }
+  rpc DeleteSample (DeleteSampleRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/samples/{sample_id}"
+    };
+  }
+}
+
+message Sample {
+  string hoge = 1;
+  string name = 2;
+  int64 age = 3;
+}
+
+message ListSamplesRequest {
+  string key =  1;
+}
+
+message ListSamplesResponse {
+  repeated Sample samples = 1;
+}
+
+message GetSampleRequest {
+  int64 sample_id = 1;
+}
+
+message CreateSampleRequest {
+  Sample sample = 1;
+}
+
+message UpdateSampleRequest {
+  int64 sample_id = 1;
+  Sample sample = 2;
+}
+
+message DeleteSampleRequest {
+  int64 sample_id = 1;
+}

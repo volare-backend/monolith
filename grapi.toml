@@ -1,4 +1,4 @@
-package = "ryota.backend"
+package = "github.com/volare-backend/monolith"
 
 [grapi]
 server_dir = "./app/server"

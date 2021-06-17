@@ -4,16 +4,16 @@ import (
 	"context"
 	"testing"
 
-	api_pb "backend/api"
+	api_pb "monolith/api"
 )
 
-func Test_TestServiceServer_ListTests(t *testing.T) {
-	svr := NewTestServiceServer()
+func Test_SampleServiceServer_ListSamples(t *testing.T) {
+	svr := NewSampleServiceServer()
 
 	ctx := context.Background()
-	req := &api_pb.ListTestsRequest{}
+	req := &api_pb.ListSamplesRequest{}
 
-	resp, err := svr.ListTests(ctx, req)
+	resp, err := svr.ListSamples(ctx, req)
 
 	t.SkipNow()
 
@@ -26,13 +26,13 @@ func Test_TestServiceServer_ListTests(t *testing.T) {
 	}
 }
 
-func Test_TestServiceServer_GetTest(t *testing.T) {
-	svr := NewTestServiceServer()
+func Test_SampleServiceServer_GetSample(t *testing.T) {
+	svr := NewSampleServiceServer()
 
 	ctx := context.Background()
-	req := &api_pb.GetTestRequest{}
+	req := &api_pb.GetSampleRequest{}
 
-	resp, err := svr.GetTest(ctx, req)
+	resp, err := svr.GetSample(ctx, req)
 
 	t.SkipNow()
 
@@ -45,13 +45,13 @@ func Test_TestServiceServer_GetTest(t *testing.T) {
 	}
 }
 
-func Test_TestServiceServer_CreateTest(t *testing.T) {
-	svr := NewTestServiceServer()
+func Test_SampleServiceServer_CreateSample(t *testing.T) {
+	svr := NewSampleServiceServer()
 
 	ctx := context.Background()
-	req := &api_pb.CreateTestRequest{}
+	req := &api_pb.CreateSampleRequest{}
 
-	resp, err := svr.CreateTest(ctx, req)
+	resp, err := svr.CreateSample(ctx, req)
 
 	t.SkipNow()
 
@@ -64,13 +64,13 @@ func Test_TestServiceServer_CreateTest(t *testing.T) {
 	}
 }
 
-func Test_TestServiceServer_UpdateTest(t *testing.T) {
-	svr := NewTestServiceServer()
+func Test_SampleServiceServer_UpdateSample(t *testing.T) {
+	svr := NewSampleServiceServer()
 
 	ctx := context.Background()
-	req := &api_pb.UpdateTestRequest{}
+	req := &api_pb.UpdateSampleRequest{}
 
-	resp, err := svr.UpdateTest(ctx, req)
+	resp, err := svr.UpdateSample(ctx, req)
 
 	t.SkipNow()
 
@@ -83,13 +83,13 @@ func Test_TestServiceServer_UpdateTest(t *testing.T) {
 	}
 }
 
-func Test_TestServiceServer_DeleteTest(t *testing.T) {
-	svr := NewTestServiceServer()
+func Test_SampleServiceServer_DeleteSample(t *testing.T) {
+	svr := NewSampleServiceServer()
 
 	ctx := context.Background()
-	req := &api_pb.DeleteTestRequest{}
+	req := &api_pb.DeleteSampleRequest{}
 
-	resp, err := svr.DeleteTest(ctx, req)
+	resp, err := svr.DeleteSample(ctx, req)
 
 	t.SkipNow()
 
